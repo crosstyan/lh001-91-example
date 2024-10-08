@@ -22,4 +22,7 @@ cd build
 cmake .. -GNinja -DTOOLCHAIN_PREFIX=<path to toolchain>
 ```
 
+## References
+
 See also [CommunityGD32Cores/ArduinoCore-GD32](https://github.com/CommunityGD32Cores/ArduinoCore-GD32).
+See the [og](https://github.com/HQU-gxy/lh001-91-example/tree/og) branch for the original code provided by the vendor.
