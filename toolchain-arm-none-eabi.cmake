@@ -72,7 +72,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
-set(CPU_TYPE "cortex-m0plus")
+set(CPU_TYPE "cortex-m4")
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 # cmake-format: off
@@ -88,14 +88,13 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 # -mabi=aapcs           Defines enums to be a variable sized type.
 #
 # https://gcc.gnu.org/onlinedocs/gcc/ARM-Options.html
-# -mtune=cortex-m0 -mcpu=cortex-m0
 #
 # have to pass this to prevent the symbols from being removed
 # https://stackoverflow.com/questions/39236917/using-gccs-link-time-optimization-with-static-linked-libraries
 #
 # cmake-format: on
 set(OBJECT_GEN_FLAGS
-        "-mthumb \
+    "-mthumb \
     -fno-builtin \
     -Wall \
     -Wimplicit-fallthrough\

@@ -1,0 +1,8 @@
+{
+    "cmake.configureArgs": [
+        "-GNinja -DTOOLCHAIN_PREFIX=/opt/arm-gnu-toolchain-13.2 "
+    ],
+    "clangd.arguments": [
+        "--query-driver=**"
+    ]
+}

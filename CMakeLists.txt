@@ -26,10 +26,12 @@ add_executable(lh001
 # https://github.com/CommunityGD32Cores/ArduinoCore-GD32/blob/main/system/startup/startup_gd32f3x0.S
 set(LD_SCRIPT_PATH ${CMAKE_CURRENT_LIST_DIR}/ldscript.ld)
 get_filename_component(LD_SCRIPT_PATH_ABSOLUTE ${LD_SCRIPT_PATH} ABSOLUTE)
+# https://github.com/CommunityGD32Cores/ArduinoCore-GD32/blob/0f853a9838b4e0675336c53a6bcaf03788901475/tools/platformio/platformio-build.py#L134
 set_target_properties(lh001 PROPERTIES
         SUFFIX ".elf"
         LINK_DEPENDS ${LD_SCRIPT_PATH_ABSOLUTE}
         LINK_FLAGS "-T \"${LD_SCRIPT_PATH_ABSOLUTE}\" \
-                    -Wl,-Map=\"${CMAKE_CURRENT_BINARY_DIR}/${target}.map\"")
+                    -Wl,-Map=\"${CMAKE_CURRENT_BINARY_DIR}/lh001.map\" \
+                    -Wl,--defsym=LD_FLASH_OFFSET=0")
 target_link_libraries(lh001 PRIVATE lh_lib)
 
