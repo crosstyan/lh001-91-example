@@ -1,0 +1,6 @@
+CompileFlags:
+  Add: [-Wno-unknown-warning-option]
+  Remove: [-m*, -f*]
+  Compiler: gcc-arm-noneabi
+Diagnostics:
+  Suppress: [attribute_section_invalid_for_target]
