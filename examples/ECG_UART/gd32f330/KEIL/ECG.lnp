@@ -1,0 +1,20 @@
+--cpu=Cortex-M4.fp.sp
+".\main.o"
+".\lh001_91.o"
+".\gd32f3x0_exti.o"
+".\gd32f3x0_fmc.o"
+".\gd32f3x0_gpio.o"
+".\gd32f3x0_spi.o"
+".\gd32f3x0_syscfg.o"
+".\gd32f3x0_timer.o"
+".\gd32f3x0_usart.o"
+".\spi_port.o"
+".\uart_print.o"
+".\gd32f3x0_misc.o"
+".\gd32f3x0_rcu.o"
+".\startup_gd32f3x0.o"
+".\system_gd32f3x0.o"
+--library_type=microlib --strict --scatter ".\ECG.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\ECG.map" -o .\ECG.axf

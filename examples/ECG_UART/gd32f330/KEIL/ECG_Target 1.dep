@@ -1,0 +1,206 @@
+Dependencies for Project 'ECG', Target 'Target 1': (DO NOT MODIFY !)
+CompilerVersion: 6180000::V6.18::ARMCLANG
+F (..\main.c)(0x649967D4)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./main.o -MD)
+I (..\..\..\..\lh_lib\LH001_91.h)(0x64983B28)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (..\..\..\..\mcu\gd32f330\port\spi_def.h)(0x63A4446A)
+I (..\..\..\..\mcu\gd32f330\port\spi_port.h)(0x63A4446A)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_spi.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_gpio.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_syscfg.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_exti.h)(0x5FBB306E)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625260D6)
+I (..\..\..\..\mcu\gd32f330\port\uart_print.h)(0x6184DD10)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_usart.h)(0x5FBB306E)
+F (..\..\..\..\lh_lib\LH001_91.c)(0x6499774E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./lh001_91.o -MD)
+I (..\..\..\..\lh_lib\LH001_91.h)(0x64983B28)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (..\..\..\..\mcu\gd32f330\port\spi_def.h)(0x63A4446A)
+I (..\..\..\..\mcu\gd32f330\port\spi_port.h)(0x63A4446A)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_spi.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_gpio.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_syscfg.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_exti.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\lib\src\gd32f3x0_exti.c)(0x5FBB306E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_exti.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_exti.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\lib\src\gd32f3x0_fmc.c)(0x5FBB306E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_fmc.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_fmc.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\lib\src\gd32f3x0_gpio.c)(0x5FBB306E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_gpio.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_gpio.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\lib\src\gd32f3x0_spi.c)(0x5FBB306E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_spi.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_spi.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\lib\src\gd32f3x0_syscfg.c)(0x5FBB306E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_syscfg.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_syscfg.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\lib\src\gd32f3x0_timer.c)(0x5FBB306E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_timer.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_timer.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\lib\src\gd32f3x0_usart.c)(0x5FBB306E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_usart.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_usart.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\port\spi_port.c)(0x6497EA74)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./spi_port.o -MD)
+I (..\..\..\..\mcu\gd32f330\port\spi_port.h)(0x63A4446A)
+I (..\..\..\..\lh_lib\LH001_91.h)(0x64983B28)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (..\..\..\..\mcu\gd32f330\port\spi_def.h)(0x63A4446A)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_spi.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_gpio.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_syscfg.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_exti.h)(0x5FBB306E)
+F (..\..\..\..\mcu\gd32f330\port\uart_print.c)(0x632C21B6)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./uart_print.o -MD)
+I (..\..\..\..\mcu\gd32f330\port\uart_print.h)(0x6184DD10)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdio.h)(0x625260D6)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_usart.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_gpio.h)(0x5FBB306E)
+F (RTE/Device/GD32F330F8/gd32f3x0_misc.c)(0x5CE64C16)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_misc.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+F (RTE/Device/GD32F330F8/gd32f3x0_rcu.c)(0x5CE64C16)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./gd32f3x0_rcu.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
+F (RTE/Device/GD32F330F8/startup_gd32f3x0.s)(0x5CE64C1A)(--target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto -c-gdwarf-4 -Wa,armasm,--pd,"__MICROLIB SETA 1"-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-Wa,armasm,--pd,"__UVISION_VERSION SETA 537" -Wa,armasm,--pd,"_RTE_ SETA 1" -Wa,armasm,--pd,"GD32F330 SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./startup_gd32f3x0.o)
+F (RTE/Device/GD32F330F8/system_gd32f3x0.c)(0x6062B378)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-D__MICROLIB -gdwarf-4 -O0 -ffunction-sections -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes -Wno-missing-noreturn -Wno-sign-conversion -Wno-nonportable-include-path -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ../../../../lh_lib -I ../../../../mcu/gd32f330/lib/inc -I ../../../../mcu/gd32f330/port-I./RTE/_Target_1-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Firmware/Peripherals/inc-IC:/Users/baizhiwei/AppData/Local/Arm/Packs/GigaDevice/GD32F3x0_DFP/3.0.2/Device/Include-D__UVISION_VERSION="537" -D_RTE_ -DGD32F330 -D_RTE_ -DGD32F330 -DSYS_TICK_DELAY-o ./system_gd32f3x0.o -MD)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0.h)(0x6062B310)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\core_cm4.h)(0x626F4ADE)
+I (C:\Keil_v5\ARM\ARMCLANG\include\stdint.h)(0x625260D8)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_version.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_compiler.h)(0x626F4ADE)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include\cmsis_armclang.h)(0x626F4ADE)
+I (..\..\..\..\mcu\gd32f330\lib\inc\system_gd32f3x0.h)(0x5FBB306E)
+I (C:\Users\baizhiwei\AppData\Local\Arm\Packs\GigaDevice\GD32F3x0_DFP\3.0.2\Device\Include\gd32f3x0_libopt.h)(0x5CE64DB4)
+I (RTE\_Target_1\RTE_Components.h)(0x649D9EB5)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_rcu.h)(0x5FBB306E)
+I (..\..\..\..\mcu\gd32f330\lib\inc\gd32f3x0_misc.h)(0x5FBB306E)
