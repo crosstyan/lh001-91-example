@@ -8,15 +8,15 @@ UART Config:
 	8 bit length, no parity check, 1 bit stop
 */
 
-#include <stdio.h>
+#include <cstdio>
 #include "LH001_91.h"
 #include "uart_print.h"
 
 
-#define ADC_DATA_LEN 7500
+constexpr uint32_t ADC_DATA_LEN = 7500;
 uint32_t data_cnt;
 
-volatile ADC_DATA_NOFIFO_t ecg_dat;
+ADC_DATA_NOFIFO_t ecg_dat;
 volatile uint32_t data_ready_flag;
 
 inline void delay_cycles(uint32_t t) {
@@ -88,6 +88,7 @@ REG_DUMP_t reg[] =
 		{ADDR_LH001_91_LOFFSTAT, 0, "ADDR_LH001_91_LOFFSTAT"},
 		{ADDR_LH001_91_RLDCON, 0, "ADDR_LH001_91_RLDCON"}};
 
+extern "C" [[noreturn]]
 int main() {
 	data_cnt        = 0;
 	data_ready_flag = 0;
@@ -107,8 +108,7 @@ int main() {
 	lh001_91_adc_go();
 	lh001_91_rdatac_start();
 
-	uint32_t counter = 0;
-	while (1) {
+	while (true) {
 		if (data_ready_flag != 0) {
 			data_ready_flag = 0;
 			data_cnt++;
@@ -122,8 +122,8 @@ int main() {
 	}
 }
 
-// ADC interrupt
-void EXTI4_15_IRQHandler() {
+extern "C" void EXTI4_15_IRQHandler() {
+	// ADC interrupt
 	if (exti_interrupt_flag_get(EXTI_10) != RESET) {
 		/* Clear the EXTI line 0 pending bit */
 		exti_interrupt_flag_clear(EXTI_10);
