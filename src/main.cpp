@@ -24,13 +24,45 @@ inline void delay_cycles(uint32_t t) {
 		;
 }
 
-// 84MHz clock
-// maximum delay time: 51.1s
-// 4294967295/84000000 = 51.1s
-inline void delay_ms(uint32_t ms) {
-	for (uint32_t i = 0; i < ms * 84000; i++)
+struct __attribute__((__packed__)) stcsr_t {
+	bool ENABLE : 1;
+	bool TICKINT : 1;
+	bool CLKSOURCE : 1;
+	uint16_t _RESERVED_0 : 13;
+	bool COUNTFLAG : 1;
+	uint16_t _RESERVED_1 : 15;
+};
+
+namespace systick {
+static volatile uint32_t sys_tick_count = 0;
+uint32_t ms() {
+	return sys_tick_count;
+}
+void delay_ms(uint32_t ms) {
+	uint32_t start = sys_tick_count;
+	while (sys_tick_count < (start + ms))
 		;
 }
+}
+
+// SysTick Control and Status Register
+// https://developer.arm.com/documentation/ddi0413/d/system-control/system-control-register-descriptions/systick-control-and-status-register
+static uintptr_t STCSR_BASE = 0xE000E010;
+// SysTick Reload Value Register
+static uintptr_t STRVR_BASE = 0xE000E014;
+// SysTick Current Value Register
+static uintptr_t STCVR_BASE = 0xE000E018;
+// SysTick Calibration Value Register
+static uintptr_t STCALIB_BASE = 0xE000E01C;
+
+// https://developer.arm.com/documentation/dui0471/m/handling-processor-exceptions/configuring-systick
+// SysTick Control and Status Register
+stcsr_t &STCSR = *reinterpret_cast<stcsr_t *>(STCSR_BASE);
+// SysTick Reload Value Register
+uint32_t &STRVR = *reinterpret_cast<uint32_t *>(STRVR_BASE);
+// SysTick Current Value Register
+uint32_t &STCVR = *reinterpret_cast<uint32_t *>(STCVR_BASE);
+
 
 void lh001_91_init() {
 
@@ -88,6 +120,23 @@ REG_DUMP_t reg[] =
 		{ADDR_LH001_91_LOFFSTAT, 0, "ADDR_LH001_91_LOFFSTAT"},
 		{ADDR_LH001_91_RLDCON, 0, "ADDR_LH001_91_RLDCON"}};
 
+// https://developer.arm.com/documentation/ddi0439/b/System-Control/Register-summary
+// https://github.com/CommunityGD32Cores/ArduinoCore-GD32/blob/0f853a9838b4e0675336c53a6bcaf03788901475/cores/arduino/gd32/systick.c#L43-L59
+inline void systick_init() {
+	// I doubt if the system clock is really 84MHz
+
+	// User manual page 70
+	// AHB、APB2和APB1域的最高时钟频率分别为108MHz、54MHz和54MHz。
+	// RCU通过AHB时钟（HCLK）8分频后作为Cortex系统
+	// 定时器（SysTick）的外部时钟。通过对SysTick控制与状态寄存器的设置，可选择上述时钟
+	// 或Cortex（HCLK）时钟作为SysTick时钟。
+	//
+	// about 1050ms in real time
+	// I'm not sure why
+	SysTick_Config(SystemCoreClock / (1'000U * 10U));
+	NVIC_SetPriority(SysTick_IRQn, 0x00U);
+}
+
 extern "C" [[noreturn]]
 int main() {
 	data_cnt        = 0;
@@ -98,30 +147,41 @@ int main() {
 	// PA14 (TX) & PA15 (RX)
 	uart_print_init();
 	debug_pin_init();
+	systick_init();
 
 	printf("test start\r\n");
-	lh001_91_init();
-
-	/*dump register to check register configuration*/
-	lh001_91_reg_dump(reg, sizeof(reg) / sizeof(REG_DUMP_t));
-	for (uint32_t i = 0; i < sizeof(reg) / sizeof(REG_DUMP_t); i++) {
-		printf("%s:0x%x\r\n", reg[i].reg_name, reg[i].val);
+	uint32_t count = 0;
+	for (;;) {
+		printf("[%u]systick=%u\r\n", count, systick::ms());
+		systick::delay_ms(1000);
+		count++;
 	}
+	// lh001_91_init();
+	//
+	// /*dump register to check register configuration*/
+	// lh001_91_reg_dump(reg, sizeof(reg) / sizeof(REG_DUMP_t));
+	// for (uint32_t i = 0; i < sizeof(reg) / sizeof(REG_DUMP_t); i++) {
+	// 	printf("%s:0x%x\r\n", reg[i].reg_name, reg[i].val);
+	// }
+	//
+	// lh001_91_adc_go();
+	// lh001_91_rdatac_start();
+	// while (true) {
+	// 	if (data_ready_flag != 0) {
+	// 		data_ready_flag = 0;
+	// 		data_cnt++;
+	//
+	// 		uint8_t val;
+	// 		const float volt_mv = lh001_91_adc_code2mv(ecg_dat.data, 2500);
+	// 		printf("%d,0x%02x,%.4f\r\n", data_cnt, static_cast<uint8_t>(ecg_dat.loffstat), volt_mv);
+	// 		lh001_91_read_regs(ADDR_LH001_91_LOFFSTAT, &val, 1);
+	// 		printf("%x\r\n", val);
+	// 	}
+	// }
+}
 
-	lh001_91_adc_go();
-	lh001_91_rdatac_start();
-	while (true) {
-		if (data_ready_flag != 0) {
-			data_ready_flag = 0;
-			data_cnt++;
-
-			uint8_t val;
-			const float volt_mv = lh001_91_adc_code2mv(ecg_dat.data, 2500);
-			printf("%d,0x%02x,%.4f\r\n", data_cnt, static_cast<uint8_t>(ecg_dat.loffstat), volt_mv);
-			lh001_91_read_regs(ADDR_LH001_91_LOFFSTAT, &val, 1);
-			printf("%x\r\n", val);
-		}
-	}
+extern "C" void SysTick_Handler() {
+	systick::sys_tick_count++;
 }
 
 extern "C" void EXTI4_15_IRQHandler() {

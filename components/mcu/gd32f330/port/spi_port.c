@@ -47,14 +47,14 @@ void stm_lh_spi_init()
     gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
 	gpio_af_set(GPIOA, GPIO_AF_0, GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7);
 
-  
+
   /*!< SPI pins configuration *************************************************/
-  /*!< Connect SPI pins to AF5 */  
+  /*!< Connect SPI pins to AF5 */
   spi_parameter_struct spi_init_struct;
     /* deinitilize SPI and the parameters */
     spi_i2s_deinit(SPI0);
     spi_struct_para_init(&spi_init_struct);
-    
+
     /* SPI0 parameter config */
     spi_init_struct.trans_mode           = SPI_TRANSMODE_FULLDUPLEX;
     spi_init_struct.device_mode          = SPI_MASTER;
@@ -98,6 +98,9 @@ uint8_t stm_lh_spi_txrx8bit(uint8_t tx_byte)
 #endif
 void stm_lh_delay_10us()
 {
+	const uint32_t stcsr = SYS_TICK_CTRL;
+	const uint32_t strvr = SYS_TICK_RELOAD;
+	const uint32_t stcvr = SYS_TICK_CURRENT;
 #ifdef SYS_TICK_DELAY
     uint32_t t,sta;
     t = 10*(SystemCoreClock/1000000);
@@ -107,7 +110,11 @@ void stm_lh_delay_10us()
     do{
       sta = SYS_TICK_CTRL;
     }while((sta&(1<<16))==0); //wait for counting down to 0
-#else 
+
+	SYS_TICK_CTRL = stcsr;
+	SYS_TICK_RELOAD = strvr;
+	SYS_TICK_CURRENT = stcvr;
+#else
     for(uint32_t i=0;i<100;i++);
 #endif
 }
