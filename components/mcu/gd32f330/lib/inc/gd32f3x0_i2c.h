@@ -2,35 +2,33 @@
     \file    gd32f3x0_i2c.h
     \brief   definitions for the I2C
 
-    \version 2017-06-06, V1.0.0, firmware for GD32F3x0
-    \version 2019-06-01, V2.0.0, firmware for GD32F3x0
-    \version 2020-09-30, V2.1.0, firmware for GD32F3x0
+    \version 2023-12-31, V2.3.0, firmware for GD32F3x0
 */
 
 /*
-    Copyright (c) 2020, GigaDevice Semiconductor Inc.
+    Copyright (c) 2023, GigaDevice Semiconductor Inc.
 
-    Redistribution and use in source and binary forms, with or without modification, 
+    Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice, this 
+    1. Redistributions of source code must retain the above copyright notice, this
        list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright notice, 
-       this list of conditions and the following disclaimer in the documentation 
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
        and/or other materials provided with the distribution.
-    3. Neither the name of the copyright holder nor the names of its contributors 
-       may be used to endorse or promote products derived from this software without 
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
        specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
-IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
-INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
-WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 */
 
@@ -47,7 +45,7 @@ OF SUCH DAMAGE.
 #define I2C_CTL0(i2cx)                REG32((i2cx) + 0x00000000U)      /*!< I2C control register 0 */
 #define I2C_CTL1(i2cx)                REG32((i2cx) + 0x00000004U)      /*!< I2C control register 1 */
 #define I2C_SADDR0(i2cx)              REG32((i2cx) + 0x00000008U)      /*!< I2C slave address register 0*/
-#define I2C_SADDR1(i2cx)              REG32((i2cx) + 0x0000000CU)      /*!< I2C slave address register */
+#define I2C_SADDR1(i2cx)              REG32((i2cx) + 0x0000000CU)      /*!< I2C slave address register 1 */
 #define I2C_DATA(i2cx)                REG32((i2cx) + 0x00000010U)      /*!< I2C transfer buffer register */
 #define I2C_STAT0(i2cx)               REG32((i2cx) + 0x00000014U)      /*!< I2C transfer status register 0 */
 #define I2C_STAT1(i2cx)               REG32((i2cx) + 0x00000018U)      /*!< I2C transfer status register */
@@ -73,8 +71,8 @@ OF SUCH DAMAGE.
 #define I2C_CTL0_SRESET               BIT(15)       /*!< software reset */
 
 /* I2Cx_CTL1 */
-#define I2C_CTL1_I2CCLK               BITS(0,6)     /*!< I2CCLK[6:0] bits (peripheral clock frequency) */
-#define I2C_CTL1_ERRIE                BIT(8)        /*!< error interrupt inable */
+#define I2C_CTL1_I2CCLK               BITS(0,5)     /*!< I2CCLK[5:0] bits (peripheral clock frequency) */
+#define I2C_CTL1_ERRIE                BIT(8)        /*!< error interrupt enable */
 #define I2C_CTL1_EVIE                 BIT(9)        /*!< event interrupt enable */
 #define I2C_CTL1_BUFIE                BIT(10)       /*!< buffer interrupt enable */
 #define I2C_CTL1_DMAON                BIT(11)       /*!< DMA requests enable */
@@ -128,7 +126,7 @@ OF SUCH DAMAGE.
 #define I2C_RT_RISETIME               BITS(0,6)     /*!< maximum rise time in fast/standard mode or fast mode plus(master mode) */
 
 /* I2Cx_FMPCFG */
-#define I2C_FMPCFG_FMPEN              BIT(0)        /*!< fast mode plus enable bit */
+#define I2C_FMPCFG_FMPEN              BIT(0)        /*!< fast mode plus enable */
 
 /* constants definitions */
 /* define the I2C bit position and its register index offset */
@@ -146,8 +144,7 @@ OF SUCH DAMAGE.
 #define I2C_STAT1_REG_OFFSET          (0x00000018U)         /*!< STAT1 register offset */
 
 /* I2C flags */
-typedef enum
-{
+typedef enum {
     /* flags in STAT0 register */
     I2C_FLAG_SBSEND = I2C_REGIDX_BIT(I2C_STAT0_REG_OFFSET, 0U),                /*!< start condition sent out in master mode */
     I2C_FLAG_ADDSEND = I2C_REGIDX_BIT(I2C_STAT0_REG_OFFSET, 1U),               /*!< address is sent in master mode or received and matches in slave mode */
@@ -171,36 +168,34 @@ typedef enum
     I2C_FLAG_DEFSMB = I2C_REGIDX_BIT(I2C_STAT1_REG_OFFSET, 5U),                /*!< default address of SMBus device */
     I2C_FLAG_HSTSMB = I2C_REGIDX_BIT(I2C_STAT1_REG_OFFSET, 6U),                /*!< SMBus host header detected in slave mode */
     I2C_FLAG_DUMOD = I2C_REGIDX_BIT(I2C_STAT1_REG_OFFSET, 7U)                  /*!< dual flag in slave mode indicating which address is matched in dual-address mode */
-}i2c_flag_enum;
+} i2c_flag_enum;
 
 /* I2C interrupt flags */
-typedef enum
-{
+typedef enum {
     /* interrupt flags in CTL1 register */
     I2C_INT_FLAG_SBSEND = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 0U),        /*!< start condition sent out in master mode interrupt flag */
     I2C_INT_FLAG_ADDSEND = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 1U),       /*!< address is sent in master mode or received and matches in slave mode interrupt flag */
-    I2C_INT_FLAG_BTC =  I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 2U),          /*!< byte transmission finishes */
+    I2C_INT_FLAG_BTC =  I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 2U),          /*!< byte transmission finishes interrupt flag */
     I2C_INT_FLAG_ADD10SEND =  I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 3U),    /*!< header of 10-bit address is sent in master mode interrupt flag */
     I2C_INT_FLAG_STPDET = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 4U),        /*!< stop condition detected in slave mode interrupt flag */
     I2C_INT_FLAG_RBNE = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 6U),          /*!< I2C_DATA is not empty during receiving interrupt flag */
-    I2C_INT_FLAG_TBE = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 7U),           /*!< I2C_DATA is empty during transmitting interrupt flag */    
+    I2C_INT_FLAG_TBE = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 9U, I2C_STAT0_REG_OFFSET, 7U),           /*!< I2C_DATA is empty during transmitting interrupt flag */
     I2C_INT_FLAG_BERR = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 8U),          /*!< a bus error occurs indication a unexpected start or stop condition on I2C bus interrupt flag */
     I2C_INT_FLAG_LOSTARB = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 9U),       /*!< arbitration lost in master mode interrupt flag */
     I2C_INT_FLAG_AERR = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 10U),         /*!< acknowledge error interrupt flag */
     I2C_INT_FLAG_OUERR = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 11U),        /*!< over-run or under-run situation occurs in slave mode interrupt flag */
     I2C_INT_FLAG_PECERR = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 12U),       /*!< PEC error when receiving data interrupt flag */
     I2C_INT_FLAG_SMBTO = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 14U),        /*!< timeout signal in SMBus mode interrupt flag */
-    I2C_INT_FLAG_SMBALT = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 15U),       /*!< SMBus Alert status interrupt flag */
-}i2c_interrupt_flag_enum;
+    I2C_INT_FLAG_SMBALT = I2C_REGIDX_BIT2(I2C_CTL1_REG_OFFSET, 8U, I2C_STAT0_REG_OFFSET, 15U),       /*!< SMBus alert status interrupt flag */
+} i2c_interrupt_flag_enum;
 
-/* I2C interrupt enable or disable */
-typedef enum
-{
+/* I2C interrupt */
+typedef enum {
     /* interrupt in CTL1 register */
     I2C_INT_ERR = I2C_REGIDX_BIT(I2C_CTL1_REG_OFFSET, 8U),                     /*!< error interrupt enable */
     I2C_INT_EV = I2C_REGIDX_BIT(I2C_CTL1_REG_OFFSET, 9U),                      /*!< event interrupt enable */
     I2C_INT_BUF = I2C_REGIDX_BIT(I2C_CTL1_REG_OFFSET, 10U),                    /*!< buffer interrupt enable */
-}i2c_interrupt_enum;
+} i2c_interrupt_enum;
 
 /* SMBus/I2C mode switch and SMBus type selection */
 #define I2C_I2CMODE_ENABLE            ((uint32_t)0x00000000U)                  /*!< I2C mode */
@@ -216,54 +211,54 @@ typedef enum
 
 /* whether or not to send an ACK */
 #define I2C_ACK_DISABLE               ((uint32_t)0x00000000U)                  /*!< ACK will be not sent */
-#define I2C_ACK_ENABLE                ((uint32_t)0x00000001U)                  /*!< ACK will be sent */
+#define I2C_ACK_ENABLE                I2C_CTL0_ACKEN                           /*!< ACK will be sent */
 
 /* I2C POAP position*/
-#define I2C_ACKPOS_NEXT               ((uint32_t)0x00000000U)                  /*!< ACKEN bit decides whether or not to send ACK for the next byte */
-#define I2C_ACKPOS_CURRENT            ((uint32_t)0x00000001U)                  /*!< ACKEN bit decides whether or not to send ACK or not for the current byte */
+#define I2C_ACKPOS_CURRENT            ((uint32_t)0x00000000U)                  /*!< ACKEN bit decides whether or not to send ACK or not for the current byte */
+#define I2C_ACKPOS_NEXT               I2C_CTL0_POAP                            /*!< ACKEN bit decides whether or not to send ACK for the next byte */
 
 /* whether or not to stretch SCL low */
-#define I2C_SCLSTRETCH_DISABLE        I2C_CTL0_SS                              /*!< SCL stretching is enabled */
-#define I2C_SCLSTRETCH_ENABLE         ((uint32_t)0x00000000U)                  /*!< SCL stretching is disabled */
+#define I2C_SCLSTRETCH_ENABLE         ((uint32_t)0x00000000U)                  /*!< SCL stretching is enabled */
+#define I2C_SCLSTRETCH_DISABLE        I2C_CTL0_SS                              /*!< SCL stretching is disabled */
 
 /* whether or not to response to a general call */
 #define I2C_GCEN_ENABLE               I2C_CTL0_GCEN                            /*!< slave will response to a general call */
 #define I2C_GCEN_DISABLE              ((uint32_t)0x00000000U)                  /*!< slave will not response to a general call */
 
 /* software reset I2C */
-#define I2C_SRESET_SET                I2C_CTL0_SRESET                          /*!< I2C is under reset */
 #define I2C_SRESET_RESET              ((uint32_t)0x00000000U)                  /*!< I2C is not under reset */
+#define I2C_SRESET_SET                I2C_CTL0_SRESET                          /*!< I2C is under reset */
 
 /* I2C DMA mode configure */
 /* DMA mode switch */
-#define I2C_DMA_ON                    I2C_CTL1_DMAON                           /*!< DMA mode enabled */
-#define I2C_DMA_OFF                   ((uint32_t)0x00000000U)                  /*!< DMA mode disabled */
+#define I2C_DMA_OFF                   ((uint32_t)0x00000000U)                  /*!< disable DMA mode */
+#define I2C_DMA_ON                    I2C_CTL1_DMAON                           /*!< enable DMA mode */
 
 /* flag indicating DMA last transfer */
-#define I2C_DMALST_ON                 I2C_CTL1_DMALST                          /*!< next DMA EOT is the last transfer */
 #define I2C_DMALST_OFF                ((uint32_t)0x00000000U)                  /*!< next DMA EOT is not the last transfer */
+#define I2C_DMALST_ON                 I2C_CTL1_DMALST                          /*!< next DMA EOT is the last transfer */
 
 /* I2C PEC configure */
 /* PEC enable */
-#define I2C_PEC_ENABLE                I2C_CTL0_PECEN                           /*!< PEC calculation on */
 #define I2C_PEC_DISABLE               ((uint32_t)0x00000000U)                  /*!< PEC calculation off */
+#define I2C_PEC_ENABLE                I2C_CTL0_PECEN                           /*!< PEC calculation on */
 
 /* PEC transfer */
-#define I2C_PECTRANS_ENABLE           I2C_CTL0_PECTRANS                        /*!< transfer PEC */
 #define I2C_PECTRANS_DISABLE          ((uint32_t)0x00000000U)                  /*!< not transfer PEC value */
+#define I2C_PECTRANS_ENABLE           I2C_CTL0_PECTRANS                        /*!< transfer PEC value */
 
 /* I2C SMBus configure */
 /* issue or not alert through SMBA pin */
-#define I2C_SALTSEND_ENABLE           I2C_CTL0_SALT                            /*!< issue alert through SMBA pin */
 #define I2C_SALTSEND_DISABLE          ((uint32_t)0x00000000U)                  /*!< not issue alert through SMBA */
+#define I2C_SALTSEND_ENABLE           I2C_CTL0_SALT                            /*!< issue alert through SMBA pin */
 
 /* ARP protocol in SMBus switch */
-#define I2C_ARP_ENABLE                I2C_CTL0_ARPEN                           /*!< ARP enable */
-#define I2C_ARP_DISABLE               ((uint32_t)0x00000000U)                  /*!< ARP disable */
+#define I2C_ARP_DISABLE               ((uint32_t)0x00000000U)                  /*!< disable ARP */
+#define I2C_ARP_ENABLE                I2C_CTL0_ARPEN                           /*!< enable ARP */
 
 /* fast mode plus enable */
-#define I2C_FAST_MODE_PLUS_ENABLE     I2C_FMPCFG_FMPEN                         /*!< fast mode plus enable */
 #define I2C_FAST_MODE_PLUS_DISABLE    ((uint32_t)0x00000000U)                  /*!< fast mode plus disable */
+#define I2C_FAST_MODE_PLUS_ENABLE     I2C_FMPCFG_FMPEN                         /*!< fast mode plus enable */
 
 /* transmit I2C data */
 #define DATA_TRANS(regval)            (BITS(0,7) & ((uint32_t)(regval) << 0))
@@ -272,12 +267,12 @@ typedef enum
 #define DATA_RECV(regval)             GET_BITS((uint32_t)(regval), 0, 7)
 
 /* I2C duty cycle in fast mode or fast mode plus */
-#define I2C_DTCY_2                    ((uint32_t)0x00000000U)                  /*!< in I2C fast mode or fast mode plus Tlow/Thigh = 2 */
-#define I2C_DTCY_16_9                 I2C_CKCFG_DTCY                           /*!< in I2C fast mode or fast mode plus Tlow/Thigh = 16/9 */
+#define I2C_DTCY_2                    ((uint32_t)0x00000000U)                  /*!< Tlow/Thigh = 2 in I2C fast mode or fast mode plus */
+#define I2C_DTCY_16_9                 I2C_CKCFG_DTCY                           /*!< Tlow/Thigh = 16/9 in I2C fast mode or fast mode plus */
 
 /* address mode for the I2C slave */
-#define I2C_ADDFORMAT_7BITS           ((uint32_t)0x00000000U)                  /*!< address:7 bits */
-#define I2C_ADDFORMAT_10BITS          I2C_SADDR0_ADDFORMAT                     /*!< address:10 bits */
+#define I2C_ADDFORMAT_7BITS           ((uint32_t)0x00000000U)                  /*!< address format is 7 bits */
+#define I2C_ADDFORMAT_10BITS          I2C_SADDR0_ADDFORMAT                     /*!< address format is 10 bits */
 
 /* function declarations */
 /* reset I2C */
@@ -286,11 +281,11 @@ void i2c_deinit(uint32_t i2c_periph);
 void i2c_clock_config(uint32_t i2c_periph, uint32_t clkspeed, uint32_t dutycyc);
 /* configure I2C address */
 void i2c_mode_addr_config(uint32_t i2c_periph, uint32_t mode, uint32_t addformat, uint32_t addr);
-/* SMBus type selection */
+/* select SMBus type */
 void i2c_smbus_type_config(uint32_t i2c_periph, uint32_t type);
 /* whether or not to send an ACK */
 void i2c_ack_config(uint32_t i2c_periph, uint32_t ack);
-/* configure I2C position of ACK and PEC when receiving */
+/* configure I2C POAP position */
 void i2c_ackpos_config(uint32_t i2c_periph, uint32_t pos);
 /* master sends slave address */
 void i2c_master_addressing(uint32_t i2c_periph, uint32_t addr, uint32_t trandirection);
@@ -311,39 +306,39 @@ void i2c_stop_on_bus(uint32_t i2c_periph);
 void i2c_data_transmit(uint32_t i2c_periph, uint8_t data);
 /* I2C receive data function */
 uint8_t i2c_data_receive(uint32_t i2c_periph);
-/* enable I2C DMA mode */
-void i2c_dma_enable(uint32_t i2c_periph, uint32_t dmastate);
+/* configure I2C DMA mode */
+void i2c_dma_config(uint32_t i2c_periph, uint32_t dmastate);
 /* configure whether next DMA EOT is DMA last transfer or not */
 void i2c_dma_last_transfer_config(uint32_t i2c_periph, uint32_t dmalast);
 /* whether to stretch SCL low when data is not ready in slave mode */
 void i2c_stretch_scl_low_config(uint32_t i2c_periph, uint32_t stretchpara);
 /* whether or not to response to a general call */
 void i2c_slave_response_to_gcall_config(uint32_t i2c_periph, uint32_t gcallpara);
-/* software reset I2C */
+/* configure software reset of I2C */
 void i2c_software_reset_config(uint32_t i2c_periph, uint32_t sreset);
 
-/* whether to enable I2C PEC calculation or not */
-void i2c_pec_enable(uint32_t i2c_periph, uint32_t pecstate);
-/* I2C whether to transfer PEC value */
-void i2c_pec_transfer_enable(uint32_t i2c_periph, uint32_t pecpara);
-/* packet error checking value */
+/* configure I2C PEC calculation */
+void i2c_pec_config(uint32_t i2c_periph, uint32_t pecstate);
+/* configure whether to transfer PEC value */
+void i2c_pec_transfer_config(uint32_t i2c_periph, uint32_t pecpara);
+/* get packet error checking value */
 uint8_t i2c_pec_value_get(uint32_t i2c_periph);
-/* I2C issue alert through SMBA pin */
-void i2c_smbus_issue_alert(uint32_t i2c_periph, uint32_t smbuspara);
-/* whether ARP is enabled under SMBus */
-void i2c_smbus_arp_enable(uint32_t i2c_periph, uint32_t arpstate);
+/* configure I2C alert through SMBA pin */
+void i2c_smbus_alert_config(uint32_t i2c_periph, uint32_t smbuspara);
+/* configure I2C ARP protocol in SMBus */
+void i2c_smbus_arp_config(uint32_t i2c_periph, uint32_t arpstate);
 
 /* check I2C flag is set or not */
 FlagStatus i2c_flag_get(uint32_t i2c_periph, i2c_flag_enum flag);
-/* clear I2C flag */
+/* clear I2C flag status */
 void i2c_flag_clear(uint32_t i2c_periph, i2c_flag_enum flag);
 /* enable I2C interrupt */
 void i2c_interrupt_enable(uint32_t i2c_periph, i2c_interrupt_enum interrupt);
 /* disable I2C interrupt */
 void i2c_interrupt_disable(uint32_t i2c_periph, i2c_interrupt_enum interrupt);
-/* check I2C interrupt flag */
+/* get I2C interrupt flag status */
 FlagStatus i2c_interrupt_flag_get(uint32_t i2c_periph, i2c_interrupt_flag_enum int_flag);
-/* clear I2C interrupt flag */
+/* clear I2C interrupt flag status */
 void i2c_interrupt_flag_clear(uint32_t i2c_periph, i2c_interrupt_flag_enum int_flag);
 
 #endif /* GD32F3X0_I2C_H */

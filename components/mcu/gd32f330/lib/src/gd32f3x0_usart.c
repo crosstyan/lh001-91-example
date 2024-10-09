@@ -2,35 +2,33 @@
     \file    gd32f3x0_usart.c
     \brief   USART driver
 
-    \version 2017-06-06, V1.0.0, firmware for GD32F3x0
-    \version 2019-06-01, V2.0.0, firmware for GD32F3x0
-    \version 2020-09-30, V2.1.0, firmware for GD32F3x0
+    \version 2023-12-31, V2.3.0, firmware for GD32F3x0
 */
 
 /*
-    Copyright (c) 2020, GigaDevice Semiconductor Inc.
+    Copyright (c) 2023, GigaDevice Semiconductor Inc.
 
-    Redistribution and use in source and binary forms, with or without modification, 
+    Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice, this 
+    1. Redistributions of source code must retain the above copyright notice, this
        list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright notice, 
-       this list of conditions and the following disclaimer in the documentation 
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
        and/or other materials provided with the distribution.
-    3. Neither the name of the copyright holder nor the names of its contributors 
-       may be used to endorse or promote products derived from this software without 
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
        specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
-IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
-INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
-WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 */
 
@@ -52,7 +50,7 @@ OF SUCH DAMAGE.
 */
 void usart_deinit(uint32_t usart_periph)
 {
-    switch(usart_periph){
+    switch(usart_periph) {
     case USART0:
         /* reset USART0 */
         rcu_periph_reset_enable(RCU_USART0RST);
@@ -74,32 +72,32 @@ void usart_deinit(uint32_t usart_periph)
     \param[in]  baudval: baud rate value
     \param[out] none
     \retval     none
-*/ 
+*/
 void usart_baudrate_set(uint32_t usart_periph, uint32_t baudval)
 {
     uint32_t uclk = 0U, intdiv = 0U, fradiv = 0U, udiv = 0U;
-    switch(usart_periph){
-         /* get clock frequency */
+    switch(usart_periph) {
+    /* get clock frequency */
     case USART0:
-         /* get USART0 clock */
-         uclk = rcu_clock_freq_get(CK_USART);
-         break;
+        /* get USART0 clock */
+        uclk = rcu_clock_freq_get(CK_USART);
+        break;
     case USART1:
-         /* get USART1 clock */
-         uclk = rcu_clock_freq_get(CK_APB1);
-         break;
+        /* get USART1 clock */
+        uclk = rcu_clock_freq_get(CK_APB1);
+        break;
     default:
-         break;
+        break;
     }
-    if(USART_CTL0(usart_periph) & USART_CTL0_OVSMOD){
+    if(USART_CTL0(usart_periph) & USART_CTL0_OVSMOD) {
         /* oversampling by 8, configure the value of USART_BAUD */
-        udiv = ((2U*uclk)+baudval/2U)/baudval;
+        udiv = ((2U * uclk) + (baudval / 2U)) / baudval;
         intdiv = udiv & 0x0000fff0U;
-        fradiv = (udiv>>1U) & 0x00000007U;
+        fradiv = (udiv >> 1U) & 0x00000007U;
         USART_BAUD(usart_periph) = ((USART_BAUD_FRADIV | USART_BAUD_INTDIV) & (intdiv | fradiv));
-    }else{
+    } else {
         /* oversampling by 16, configure the value of USART_BAUD */
-        udiv = (uclk+baudval/2U)/baudval;
+        udiv = (uclk + (baudval / 2U)) / baudval;
         intdiv = udiv & 0x0000fff0U;
         fradiv = udiv & 0x0000000fU;
         USART_BAUD(usart_periph) = ((USART_BAUD_FRADIV | USART_BAUD_INTDIV) & (intdiv | fradiv));
@@ -122,7 +120,7 @@ void usart_parity_config(uint32_t usart_periph, uint32_t paritycfg)
     /* disable USART */
     USART_CTL0(usart_periph) &= ~(USART_CTL0_UEN);
     /* clear USART_CTL0 PM,PCEN bits */
-    USART_CTL0(usart_periph) &= ~(USART_CTL0_PM | USART_CTL0_PCEN); 
+    USART_CTL0(usart_periph) &= ~(USART_CTL0_PM | USART_CTL0_PCEN);
     /* configure USART parity mode */
     USART_CTL0(usart_periph) |= paritycfg;
 }
@@ -239,11 +237,11 @@ void usart_data_first_config(uint32_t usart_periph, uint32_t msbf)
     USART_CTL0(usart_periph) &= ~(USART_CTL0_UEN);
     /* configure LSB or MSB first */
     USART_CTL1(usart_periph) &= ~(USART_CTL1_MSBF);
-    USART_CTL1(usart_periph) |= (USART_CTL1_MSBF & msbf);
+    USART_CTL1(usart_periph) |= msbf;
 }
 
 /*!
-    \brief      USART inverted configure
+    \brief      configure USART inversion
     \param[in]  usart_periph: USARTx(x=0,1)
     \param[in]  invertpara: refer to usart_invert_enum
                 only one parameter can be selected which is shown as below:
@@ -262,7 +260,7 @@ void usart_invert_config(uint32_t usart_periph, usart_invert_enum invertpara)
 {
     USART_CTL0(usart_periph) &= ~(USART_CTL0_UEN);
     /* inverted or not the specified signal */
-    switch(invertpara){
+    switch(invertpara) {
     case USART_DINV_ENABLE:
         USART_CTL1(usart_periph) |= USART_CTL1_DINV;
         break;
@@ -351,7 +349,7 @@ void usart_sample_bit_config(uint32_t usart_periph, uint32_t osb)
 {
     /* disable USART */
     USART_CTL0(usart_periph) &= ~(USART_CTL0_UEN);
-    
+
     USART_CTL2(usart_periph) &= ~(USART_CTL2_OSB);
     USART_CTL2(usart_periph) |= osb;
 }
@@ -398,9 +396,9 @@ void usart_receiver_timeout_threshold_config(uint32_t usart_periph, uint32_t rti
     \param[out] none
     \retval     none
 */
-void usart_data_transmit(uint32_t usart_periph, uint32_t data)
+void usart_data_transmit(uint32_t usart_periph, uint16_t data)
 {
-    USART_TDATA(usart_periph) = (USART_TDATA_TDATA & data);
+    USART_TDATA(usart_periph) = (USART_TDATA_TDATA & (uint32_t)data);
 }
 
 /*!
@@ -415,46 +413,24 @@ uint16_t usart_data_receive(uint32_t usart_periph)
 }
 
 /*!
-    \brief      enable auto baud rate detection
-    \param[in]  usart_periph: USARTx(x=0)
-    \param[out] none
-    \retval     none
-*/
-void usart_autobaud_detection_enable(uint32_t usart_periph)
-{
-    USART_CTL1(usart_periph) |= USART_CTL1_ABDEN;
-}
-
-/*!
-    \brief      disable auto baud rate detection
-    \param[in]  usart_periph: USARTx(x=0)
-    \param[out] none
-    \retval     none
-*/
-void usart_autobaud_detection_disable(uint32_t usart_periph)
-{
-    USART_CTL1(usart_periph) &= ~(USART_CTL1_ABDEN);
-}
-
-/*!
-    \brief      configure auto baud rate detection mode
-    \param[in]  usart_periph: USARTx(x=0)
-    \param[in]  abdmod: auto baud rate detection mode
+    \brief      enable USART command
+    \param[in]  usart_periph: USARTx(x=0,1,2)
+    \param[in]  cmdtype: command type
                 only one parameter can be selected which is shown as below:
-      \arg        USART_ABDM_FTOR: falling edge to rising edge measurement
-      \arg        USART_ABDM_FTOF: falling edge to falling edge measurement
+      \arg        USART_CMD_SBKCMD: send break command
+      \arg        USART_CMD_MMCMD: mute mode command
+      \arg        USART_CMD_RXFCMD: receive data flush command
+      \arg        USART_CMD_TXFCMD: transmit data flush request
     \param[out] none
     \retval     none
 */
-void usart_autobaud_detection_mode_config(uint32_t usart_periph, uint32_t abdmod)
+void usart_command_enable(uint32_t usart_periph, uint32_t cmdtype)
 {
-    /* reset ABDM bits */
-    USART_CTL1(usart_periph) &= ~(USART_CTL1_ABDM);
-    USART_CTL1(usart_periph) |= abdmod;
+    USART_CMD(usart_periph) |= (cmdtype);
 }
 
 /*!
-    \brief      address of the USART terminal
+    \brief      configure the address of the USART in wake up by address match mode
     \param[in]  usart_periph: USARTx(x=0,1)
     \param[in]  addr: 0x00-0xFF, address of USART terminal
     \param[out] none
@@ -470,7 +446,7 @@ void usart_address_config(uint32_t usart_periph, uint8_t addr)
 }
 
 /*!
-    \brief      configure the address of the USART in wake up by address match mode
+    \brief      configure address detection mode
     \param[in]  usart_periph: USARTx(x=0,1)
     \param[in]  addmod: address detection mode
                 only one parameter can be selected which is shown as below:
@@ -516,7 +492,7 @@ void usart_mute_mode_disable(uint32_t usart_periph)
     \param[in]  wmethod: two methods be used to enter or exit the mute mode
                 only one parameter can be selected which is shown as below:
       \arg        USART_WM_IDLE: idle line
-      \arg        USART_WM_ADDR: address mark
+      \arg        USART_WM_ADDR: address match
     \param[out] none
     \retval     none
 */
@@ -812,7 +788,7 @@ void usart_irda_mode_disable(uint32_t usart_periph)
 }
 
 /*!
-    \brief      configure the peripheral clock prescaler in USART IrDA low-power or SmartCard mode
+    \brief      configure the peripheral clock prescaler in USART IrDA low-power or smartcard mode
     \param[in]  usart_periph: USARTx(x=0)
     \param[in]  psc: 0x00000000-0x000000FF
     \param[out] none
@@ -964,35 +940,46 @@ void usart_depolarity_config(uint32_t usart_periph, uint32_t dep)
 /*!
     \brief      configure USART DMA reception
     \param[in]  usart_periph: USARTx(x=0,1)
-    \param[in]  dmacmd: enable or disable DMA for reception
+    \param[in]  dmacmd: USART DMA mode
                 only one parameter can be selected which is shown as below:
-      \arg        USART_DENR_ENABLE: DMA enable for reception
-      \arg        USART_DENR_DISABLE: DMA disable for reception
+      \arg        USART_RECEIVE_DMA_ENABLE: enable USART DMA for reception
+      \arg        USART_RECEIVE_DMA_DISABLE: disable USART DMA for reception
     \param[out] none
     \retval     none
 */
-void usart_dma_receive_config(uint32_t usart_periph, uint32_t dmacmd)
+void usart_dma_receive_config(uint32_t usart_periph, uint8_t dmacmd)
 {
     USART_CTL2(usart_periph) &= ~USART_CTL2_DENR;
-    /* configure DMA reception */
-    USART_CTL2(usart_periph) |= dmacmd;
+    USART_CTL2(usart_periph) |= (USART_CTL2_DENR & dmacmd);
 }
 
 /*!
     \brief      configure USART DMA transmission
     \param[in]  usart_periph: USARTx(x=0,1)
-    \param[in]  dmacmd: enable or disable DMA for transmission
+    \param[in]  dmacmd: USART DMA mode
                 only one parameter can be selected which is shown as below:
-      \arg        USART_DENT_ENABLE: DMA enable for transmission
-      \arg        USART_DENT_DISABLE: DMA disable for transmission
+      \arg        USART_TRANSMIT_DMA_ENABLE: enable USART DMA for transmission
+      \arg        USART_TRANSMIT_DMA_DISABLE: disable USART DMA for transmission
     \param[out] none
     \retval     none
 */
-void usart_dma_transmit_config(uint32_t usart_periph, uint32_t dmacmd)
+void usart_dma_transmit_config(uint32_t usart_periph, uint8_t dmacmd)
 {
     USART_CTL2(usart_periph) &= ~USART_CTL2_DENT;
-    /* configure DMA transmission */
-    USART_CTL2(usart_periph) |= dmacmd;
+    USART_CTL2(usart_periph) |= (USART_CTL2_DENT & dmacmd);
+}
+
+/*!
+    \brief      enable DMA on reception error
+    \param[in]  usart_periph: USARTx(x=0,1)
+    \param[out] none
+    \retval     none
+*/
+void usart_reception_error_dma_enable(uint32_t usart_periph)
+{
+    /* disable USART */
+    USART_CTL0(usart_periph) &= ~(USART_CTL0_UEN);
+    USART_CTL2(usart_periph) &= ~(USART_CTL2_DDRE);
 }
 
 /*!
@@ -1005,26 +992,11 @@ void usart_reception_error_dma_disable(uint32_t usart_periph)
 {
     /* disable USART */
     USART_CTL0(usart_periph) &= ~(USART_CTL0_UEN);
-
     USART_CTL2(usart_periph) |= USART_CTL2_DDRE;
 }
 
 /*!
-    \brief      enable DMA on reception error 
-    \param[in]  usart_periph: USARTx(x=0,1)
-    \param[out] none
-    \retval     none
-*/
-void usart_reception_error_dma_enable(uint32_t usart_periph)
-{
-    /* disable USART */
-    USART_CTL0(usart_periph) &= ~(USART_CTL0_UEN);
-
-    USART_CTL2(usart_periph) &= ~(USART_CTL2_DDRE);
-}
-
-/*!
-    \brief      enable USART to wakeup the mcu from deep-sleep mode
+    \brief      enable USART to wakeup the MCU from deep-sleep mode
     \param[in]  usart_periph: USARTx(x=0)
     \param[out] none
     \retval     none
@@ -1035,7 +1007,7 @@ void usart_wakeup_enable(uint32_t usart_periph)
 }
 
 /*!
-    \brief      disable USART to wakeup the mcu from deep-sleep mode
+    \brief      disable USART to wakeup the MCU from deep-sleep mode
     \param[in]  usart_periph: USARTx(x=0)
     \param[out] none
     \retval     none
@@ -1063,24 +1035,6 @@ void usart_wakeup_mode_config(uint32_t usart_periph, uint32_t wum)
     /* reset WUM bit */
     USART_CTL2(usart_periph) &= ~(USART_CTL2_WUM);
     USART_CTL2(usart_periph) |= USART_CTL2_WUM & (wum);
-}
-
-/*!
-    \brief      enable USART command
-    \param[in]  usart_periph: USARTx(x=0,1)
-    \param[in]  cmdtype: command type
-                only one parameter can be selected which is shown as below:
-      \arg        USART_CMD_ABDCMD: auto baudrate detection command
-      \arg        USART_CMD_SBKCMD: send break command
-      \arg        USART_CMD_MMCMD: mute mode command
-      \arg        USART_CMD_RXFCMD: receive data flush command
-      \arg        USART_CMD_TXFCMD: transmit data flush request
-    \param[out] none
-    \retval     none
-*/
-void usart_command_enable(uint32_t usart_periph, uint32_t cmdtype)
-{
-    USART_CMD(usart_periph) |= (cmdtype);   
 }
 
 /*!
@@ -1117,32 +1071,30 @@ uint8_t usart_receive_fifo_counter_number(uint32_t usart_periph)
 }
 
 /*!
-    \brief      get flag in STAT/CHC/RFCS register
+    \brief      get USART status
     \param[in]  usart_periph: USARTx(x=0,1)
     \param[in]  flag: flag type
                 only one parameter can be selected which is shown as below:
       \arg        USART_FLAG_PERR: parity error flag
       \arg        USART_FLAG_FERR: frame error flag
       \arg        USART_FLAG_NERR: noise error flag
-      \arg        USART_FLAG_ORERR: overrun error
+      \arg        USART_FLAG_ORERR: overrun error flag
       \arg        USART_FLAG_IDLE: idle line detected flag
       \arg        USART_FLAG_RBNE: read data buffer not empty
-      \arg        USART_FLAG_TC: transmission completed
+      \arg        USART_FLAG_TC: transmission complete flag
       \arg        USART_FLAG_TBE: transmit data register empty
       \arg        USART_FLAG_LBD: LIN break detected flag
       \arg        USART_FLAG_CTSF: CTS change flag
       \arg        USART_FLAG_CTS: CTS level
       \arg        USART_FLAG_RT: receiver timeout flag
       \arg        USART_FLAG_EB: end of block flag
-      \arg        USART_FLAG_ABDE: auto baudrate detection error
-      \arg        USART_FLAG_ABD: auto baudrate detection flag
       \arg        USART_FLAG_BSY: busy flag
       \arg        USART_FLAG_AM: address match flag
       \arg        USART_FLAG_SB: send break flag
       \arg        USART_FLAG_RWU: receiver wakeup from mute mode.
       \arg        USART_FLAG_WU: wakeup from deep-sleep mode flag
       \arg        USART_FLAG_TEA: transmit enable acknowledge flag
-      \arg        USART_FLAG_REA: receive enable acknowledge flag 
+      \arg        USART_FLAG_REA: receive enable acknowledge flag
       \arg        USART_FLAG_EPERR: early parity error flag
       \arg        USART_FLAG_RFE: receive FIFO empty flag
       \arg        USART_FLAG_RFF: receive FIFO full flag
@@ -1151,9 +1103,9 @@ uint8_t usart_receive_fifo_counter_number(uint32_t usart_periph)
 */
 FlagStatus usart_flag_get(uint32_t usart_periph, usart_flag_enum flag)
 {
-    if(RESET != (USART_REG_VAL(usart_periph, flag) & BIT(USART_BIT_POS(flag)))){
+    if(RESET != (USART_REG_VAL(usart_periph, flag) & BIT(USART_BIT_POS(flag)))) {
         return SET;
-    }else{
+    } else {
         return RESET;
     }
 }
@@ -1165,7 +1117,7 @@ FlagStatus usart_flag_get(uint32_t usart_periph, usart_flag_enum flag)
                 only one parameter can be selected which is shown as below:
       \arg        USART_FLAG_PERR: parity error flag
       \arg        USART_FLAG_FERR: frame error flag
-      \arg        USART_FLAG_NERR: noise detected flag
+      \arg        USART_FLAG_NERR: noise error flag
       \arg        USART_FLAG_ORERR: overrun error flag
       \arg        USART_FLAG_IDLE: idle line detected flag
       \arg        USART_FLAG_TC: transmission complete flag
@@ -1189,20 +1141,19 @@ void usart_flag_clear(uint32_t usart_periph, usart_flag_enum flag)
     \param[in]  usart_periph: USARTx(x=0,1)
     \param[in]  interrupt: interrupt
                 only one parameter can be selected which is shown as below:
-      \arg        USART_INT_IDLE: idle interrupt
-      \arg        USART_INT_RBNE: read data buffer not empty interrupt and
-                                  overrun error interrupt enable interrupt
+      \arg        USART_INT_IDLE: idle line detected interrupt
+      \arg        USART_INT_RBNE: read data buffer not empty interrupt and overrun error interrupt
       \arg        USART_INT_TC: transmission complete interrupt
-      \arg        USART_INT_TBE: transmit data register empty interrupt
+      \arg        USART_INT_TBE: transmitter buffer empty interrupt
       \arg        USART_INT_PERR: parity error interrupt
       \arg        USART_INT_AM: address match interrupt
       \arg        USART_INT_RT: receiver timeout interrupt
       \arg        USART_INT_EB: end of block interrupt
       \arg        USART_INT_LBD: LIN break detection interrupt
-      \arg        USART_INT_ERR: error interrupt enable in multibuffer communication
+      \arg        USART_INT_ERR: error interrupt
       \arg        USART_INT_CTS: CTS interrupt
       \arg        USART_INT_WU: wakeup from deep-sleep mode interrupt
-      \arg        USART_INT_RFF: receive FIFO full interrupt enable
+      \arg        USART_INT_RFF: receive FIFO full interrupt
     \param[out] none
     \retval     none
 */
@@ -1217,19 +1168,18 @@ void usart_interrupt_enable(uint32_t usart_periph, usart_interrupt_enum interrup
     \param[in]  interrupt: interrupt
                 only one parameter can be selected which is shown as below:
       \arg        USART_INT_IDLE: idle interrupt
-      \arg        USART_INT_RBNE: read data buffer not empty interrupt and
-                                  overrun error interrupt
+      \arg        USART_INT_RBNE: read data buffer not empty interrupt and overrun error interrupt
       \arg        USART_INT_TC: transmission complete interrupt
-      \arg        USART_INT_TBE: transmit data register empty interrupt
+      \arg        USART_INT_TBE: transmitter buffer empty interrupt
       \arg        USART_INT_PERR: parity error interrupt
       \arg        USART_INT_AM: address match interrupt
       \arg        USART_INT_RT: receiver timeout interrupt
       \arg        USART_INT_EB: end of block interrupt
       \arg        USART_INT_LBD: LIN break detection interrupt
-      \arg        USART_INT_ERR: error interrupt enable in multibuffer communication
+      \arg        USART_INT_ERR: error interrupt
       \arg        USART_INT_CTS: CTS interrupt
       \arg        USART_INT_WU: wakeup from deep-sleep mode interrupt
-      \arg        USART_INT_RFF: receive FIFO full interrupt enable
+      \arg        USART_INT_RFF: receive FIFO full interrupt
     \param[out] none
     \retval     none
 */
@@ -1239,26 +1189,26 @@ void usart_interrupt_disable(uint32_t usart_periph, usart_interrupt_enum interru
 }
 
 /*!
-    \brief      get USART interrupt and flag status
+    \brief      get USART interrupt flag status
     \param[in]  usart_periph: USARTx(x=0,1)
     \param[in]  int_flag: interrupt and flag type, refer to usart_interrupt_flag_enum
                 only one parameter can be selected which is shown as below:
-      \arg        USART_INT_FLAG_EB: end of block interrupt and interrupt flag
+      \arg        USART_INT_FLAG_EB: end of block interrupt flag
       \arg        USART_INT_FLAG_RT: receiver timeout interrupt flag
-      \arg        USART_INT_FLAG_AM: address match interrupt flag 
-      \arg        USART_INT_FLAG_PERR: parity error interrupt flag 
-      \arg        USART_INT_FLAG_TBE: transmitter buffer empty interrupt flag 
+      \arg        USART_INT_FLAG_AM: address match interrupt flag
+      \arg        USART_INT_FLAG_PERR: parity error interrupt flag
+      \arg        USART_INT_FLAG_TBE: transmitter buffer empty interrupt flag
       \arg        USART_INT_FLAG_TC: transmission complete interrupt flag
       \arg        USART_INT_FLAG_RBNE: read data buffer not empty interrupt flag
       \arg        USART_INT_FLAG_RBNE_ORERR: overrun error interrupt flag
-      \arg        USART_INT_FLAG_IDLE: IDLE line detected interrupt flag
-      \arg        USART_INT_FLAG_LBD: LIN break detected interrupt flag 
+      \arg        USART_INT_FLAG_IDLE: idle line detected interrupt flag
+      \arg        USART_INT_FLAG_LBD: LIN break detected interrupt flag
       \arg        USART_INT_FLAG_WU: wakeup from deep-sleep mode interrupt flag
       \arg        USART_INT_FLAG_CTS: CTS interrupt flag
       \arg        USART_INT_FLAG_ERR_NERR: noise error interrupt flag
       \arg        USART_INT_FLAG_ERR_ORERR: overrun error interrupt flag
       \arg        USART_INT_FLAG_ERR_FERR: frame error interrupt flag
-      \arg        USART_INT_FLAG_RFFINT: receive FIFO full interrupt flag
+      \arg        USART_INT_FLAG_RFF: receive FIFO full interrupt flag
     \param[out] none
     \retval     FlagStatus: SET or RESET
 */
@@ -1270,10 +1220,10 @@ FlagStatus usart_interrupt_flag_get(uint32_t usart_periph, usart_interrupt_flag_
     /* get the corresponding flag bit status */
     flagstatus = (USART_REG_VAL2(usart_periph, int_flag) & BIT(USART_BIT_POS2(int_flag)));
 
-    if(flagstatus && intenable){
+    if(flagstatus && intenable) {
         return SET;
-    }else{
-        return RESET; 
+    } else {
+        return RESET;
     }
 }
 
@@ -1282,28 +1232,28 @@ FlagStatus usart_interrupt_flag_get(uint32_t usart_periph, usart_interrupt_flag_
     \param[in]  usart_periph: USARTx(x=0,1)
     \param[in]  flag: USART interrupt flag
                 only one parameter can be selected which is shown as below:
+      \arg        USART_INT_FLAG_EB: end of block interrupt flag
+      \arg        USART_INT_FLAG_RT: receiver timeout interrupt flag
+      \arg        USART_INT_FLAG_AM: address match interrupt flag
       \arg        USART_INT_FLAG_PERR: parity error interrupt flag
+      \arg        USART_INT_FLAG_TC: transmission complete interrupt flag
+      \arg        USART_INT_FLAG_RBNE_ORERR: overrun error interrupt flag
+      \arg        USART_INT_FLAG_IDLE: idle line detected interrupt flag
+      \arg        USART_INT_FLAG_LBD: LIN break detected interrupt flag
+      \arg        USART_INT_FLAG_WU: wakeup from deep-sleep mode interrupt flag
+      \arg        USART_INT_FLAG_CTS: CTS change interrupt flag
       \arg        USART_INT_FLAG_ERR_FERR: frame error interrupt flag
       \arg        USART_INT_FLAG_ERR_NERR: noise detected interrupt flag
-      \arg        USART_INT_FLAG_RBNE_ORERR: overrun error interrupt flag
       \arg        USART_INT_FLAG_ERR_ORERR: overrun error interrupt flag
-      \arg        USART_INT_FLAG_IDLE: idle line detected interrupt flag
-      \arg        USART_INT_FLAG_TC: transmission complete interrupt flag
-      \arg        USART_INT_FLAG_LBD: LIN break detected interrupt flag
-      \arg        USART_INT_FLAG_CTS: CTS change interrupt flag
-      \arg        USART_INT_FLAG_RT: receiver timeout interrupt flag
-      \arg        USART_INT_FLAG_EB: end of block interrupt flag
-      \arg        USART_INT_FLAG_AM: address match interrupt flag
-      \arg        USART_INT_FLAG_WU: wakeup from deep-sleep mode interrupt flag
-      \arg        USART_INT_FLAG_RFFINT: receive FIFO full interrupt flag
+      \arg        USART_INT_FLAG_RFF: receive FIFO full interrupt flag
     \param[out] none
     \retval     none
 */
 void usart_interrupt_flag_clear(uint32_t usart_periph, usart_interrupt_flag_enum int_flag)
 {
-    if(USART_INT_FLAG_RFFINT == int_flag){
+    if(USART_INT_FLAG_RFF == int_flag) {
         USART_RFCS(usart_periph) &= (uint32_t)(~USART_RFCS_RFFINT);
-    }else{
+    } else {
         USART_INTC(usart_periph) |= BIT(USART_BIT_POS2(int_flag));
     }
 }

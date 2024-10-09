@@ -2,35 +2,33 @@
     \file    gd32f3x0_ctc.h
     \brief   definitions for the CTC
 
-    \version 2017-06-06, V1.0.0, firmware for GD32F3x0
-    \version 2019-06-01, V2.0.0, firmware for GD32F3x0
-    \version 2020-09-30, V2.1.0, firmware for GD32F3x0    
+    \version 2023-12-31, V2.3.0, firmware for GD32F3x0
 */
 
 /*
-    Copyright (c) 2020, GigaDevice Semiconductor Inc.
+    Copyright (c) 2023, GigaDevice Semiconductor Inc.
 
-    Redistribution and use in source and binary forms, with or without modification, 
+    Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
-    1. Redistributions of source code must retain the above copyright notice, this 
+    1. Redistributions of source code must retain the above copyright notice, this
        list of conditions and the following disclaimer.
-    2. Redistributions in binary form must reproduce the above copyright notice, 
-       this list of conditions and the following disclaimer in the documentation 
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
        and/or other materials provided with the distribution.
-    3. Neither the name of the copyright holder nor the names of its contributors 
-       may be used to endorse or promote products derived from this software without 
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
        specific prior written permission.
 
-    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
-IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
-INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
-NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
-WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
 OF SUCH DAMAGE.
 */
 
@@ -40,17 +38,17 @@ OF SUCH DAMAGE.
 #include "gd32f3x0.h"
 
 /* CTC definitions */
-#define CTC                          CTC_BASE
+#define CTC                          CTC_BASE                  /*!< base address */
 
 /* registers definitions */
-#define CTC_CTL0                     REG32(CTC + 0x00000000U)  /*!< CTC control register 0 */
-#define CTC_CTL1                     REG32(CTC + 0x00000004U)  /*!< CTC control register 1 */
-#define CTC_STAT                     REG32(CTC + 0x00000008U)  /*!< CTC status register */
-#define CTC_INTC                     REG32(CTC + 0x0000000CU)  /*!< CTC interrupt clear register */
+#define CTC_CTL0                     REG32((CTC) + 0x00000000U)  /*!< CTC control register 0 */
+#define CTC_CTL1                     REG32((CTC) + 0x00000004U)  /*!< CTC control register 1 */
+#define CTC_STAT                     REG32((CTC) + 0x00000008U)  /*!< CTC status register */
+#define CTC_INTC                     REG32((CTC) + 0x0000000CU)  /*!< CTC interrupt clear register */
 
 /* bits definitions */
 /* CTC_CTL0 */
-#define CTC_CTL0_CKOKIE              BIT(0)                    /*!< clock trim OK(CKOKIF) interrupt enable */ 
+#define CTC_CTL0_CKOKIE              BIT(0)                    /*!< clock trim OK(CKOKIF) interrupt enable */
 #define CTC_CTL0_CKWARNIE            BIT(1)                    /*!< clock trim warning(CKWARNIF) interrupt enable */
 #define CTC_CTL0_ERRIE               BIT(2)                    /*!< error(ERRIF) interrupt enable */
 #define CTC_CTL0_EREFIE              BIT(3)                    /*!< EREFIF interrupt enable */
@@ -101,7 +99,6 @@ OF SUCH DAMAGE.
 #define CTL1_REFSEL(regval)                              (BITS(28,29) & ((uint32_t)(regval) << 28))
 #define CTC_REFSOURCE_GPIO                               CTL1_REFSEL(0)               /*!< GPIO is selected */
 #define CTC_REFSOURCE_LXTAL                              CTL1_REFSEL(1)               /*!< LXTAL is clock selected */
-#define CTC_REFSOURCE_USBSOF                             CTL1_REFSEL(2)               /*!< USBFSSOF selected */
 
 /* reference signal source prescaler definitions */
 #define CTL1_REFPSC(regval)                              (BITS(24,26) & ((uint32_t)(regval) << 24))
@@ -142,6 +139,16 @@ OF SUCH DAMAGE.
 /* initialization functions */
 /* reset ctc clock trim controller */
 void ctc_deinit(void);
+/* enable CTC trim counter */
+void ctc_counter_enable(void);
+/* disable CTC trim counter */
+void ctc_counter_disable(void);
+/* configure the IRC48M trim value */
+void ctc_irc48m_trim_value_config(uint8_t trim_value);
+/* generate software reference source sync pulse */
+void ctc_software_refsource_pulse_generate(void);
+/* configure hardware automatically trim mode */
+void ctc_hardware_trim_mode_config(uint32_t hardmode);
 /* configure reference signal source polarity */
 void ctc_refsource_polarity_config(uint32_t polarity);
 /* select reference signal source */
@@ -152,20 +159,7 @@ void ctc_refsource_prescaler_config(uint32_t prescaler);
 void ctc_clock_limit_value_config(uint8_t limit_value);
 /* configure CTC counter reload value */
 void ctc_counter_reload_value_config(uint16_t reload_value);
-/* enable CTC trim counter */
-void ctc_counter_enable(void);
-/* disable CTC trim counter */
-void ctc_counter_disable(void);
 
-/* function configuration */
-/* configure the IRC48M trim value */
-void ctc_irc48m_trim_value_config(uint8_t trim_value);
-/* generate software reference source sync pulse */
-void ctc_software_refsource_pulse_generate(void);
-/* configure hardware automatically trim mode */
-void ctc_hardware_trim_mode_config(uint32_t hardmode);
-
-/* reading functions */
 /* read CTC counter capture value when reference sync pulse occurred */
 uint16_t ctc_counter_capture_value_read(void);
 /* read CTC trim counter direction when reference sync pulse occurred */
@@ -176,17 +170,17 @@ uint16_t ctc_counter_reload_value_read(void);
 uint8_t ctc_irc48m_trim_value_read(void);
 
 /* interrupt & flag functions */
-/* enable the CTC interrupt */
-void ctc_interrupt_enable(uint32_t interrupt);
-/* disable the CTC interrupt */
-void ctc_interrupt_disable(uint32_t interrupt);
 /* get CTC flag */
 FlagStatus ctc_flag_get(uint32_t flag);
 /* clear CTC flag */
 void ctc_flag_clear(uint32_t flag);
+/* enable the CTC interrupt */
+void ctc_interrupt_enable(uint32_t interrupt);
+/* disable the CTC interrupt */
+void ctc_interrupt_disable(uint32_t interrupt);
 /* get CTC interrupt flag */
-FlagStatus ctc_interrupt_flag_get(uint32_t interrupt); 
+FlagStatus ctc_interrupt_flag_get(uint32_t int_flag);
 /* clear CTC interrupt flag */
-void ctc_interrupt_flag_clear(uint32_t interrupt);
+void ctc_interrupt_flag_clear(uint32_t int_flag);
 
 #endif /* GD32F3X0_CTC_H */

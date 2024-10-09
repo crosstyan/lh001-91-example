@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_compile_definitions(-DGD32F330)
+add_compile_definitions(-DGD32F330 -DSYS_TICK_DELAY)
 add_subdirectory(components)
 add_executable(lh001
         src/main.cpp)
