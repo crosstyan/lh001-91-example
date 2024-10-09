@@ -1,4 +1,4 @@
-# [LH001-91](http://en.legendsemi.com/product_2/1043097573976657920.html) evaluation example
+-DTOOLCHAIN_PREFIX=/opt/arm-gnu-toolchain-13.2# [LH001-91](http://en.legendsemi.com/product_2/1043097573976657920.html) evaluation example
 
 [LH001-91](http://en.legendsemi.com/product_2/1043097573976657920.html) is a
 high-precision and low-cost analog front end: it supports EEG, ECG measurement
@@ -20,6 +20,17 @@ If you don't have a toolchain for ARM, you can use [GNU Arm Embedded Toolchain](
 mkdir build
 cd build
 cmake .. -GNinja -DTOOLCHAIN_PREFIX=<path to toolchain>
+```
+
+## flashing
+
+```bash
+probe-rs download --chip GD32F330CB build/lh001.elf
+```
+
+```bash
+# debug
+/opt/arm-gnu-toolchain-13.2/bin/arm-none-eabi-gdb build/lh001.elf -ex 'target extended-remote localhost:4242'
 ```
 
 ## References

@@ -19,8 +19,17 @@ uint32_t data_cnt;
 volatile ADC_DATA_NOFIFO_t ecg_dat;
 volatile uint32_t data_ready_flag;
 
-void delay(uint32_t t) {
-	for (uint32_t i = 0; i < t; i++);
+inline void delay_cycles(uint32_t t) {
+	for (uint32_t i = 0; i < t; i++)
+		;
+}
+
+// 84MHz clock
+// maximum delay time: 51.1s
+// 4294967295/84000000 = 51.1s
+inline void delay_ms(uint32_t ms) {
+	for (uint32_t i = 0; i < ms * 84000; i++)
+		;
 }
 
 void lh001_91_init() {
@@ -80,8 +89,6 @@ REG_DUMP_t reg[] =
 		{ADDR_LH001_91_RLDCON, 0, "ADDR_LH001_91_RLDCON"}};
 
 int main() {
-	uint8_t val;
-	float volt_mv;
 	data_cnt        = 0;
 	data_ready_flag = 0;
 
@@ -91,24 +98,23 @@ int main() {
 	printf("test start\r\n");
 	lh001_91_init();
 
-#if 1
 	/*dump register to check register configuration*/
 	lh001_91_reg_dump(reg, sizeof(reg) / sizeof(REG_DUMP_t));
 	for (uint32_t i = 0; i < sizeof(reg) / sizeof(REG_DUMP_t); i++) {
 		printf("%s:0x%x\r\n", reg[i].reg_name, reg[i].val);
 	}
-#endif
 
 	lh001_91_adc_go();
 	lh001_91_rdatac_start();
 
-
+	uint32_t counter = 0;
 	while (1) {
 		if (data_ready_flag != 0) {
 			data_ready_flag = 0;
 			data_cnt++;
 
-			volt_mv = lh001_91_adc_code2mv(ecg_dat.data, 2500);
+			uint8_t val;
+			const float volt_mv = lh001_91_adc_code2mv(ecg_dat.data, 2500);
 			printf("%d,%x,%f\r\n", data_cnt, ecg_dat.loffstat, volt_mv);
 			lh001_91_read_regs(ADDR_LH001_91_LOFFSTAT, &val, 1);
 			printf("%x\r\n", val);
@@ -122,7 +128,6 @@ void EXTI4_15_IRQHandler() {
 		/* Clear the EXTI line 0 pending bit */
 		exti_interrupt_flag_clear(EXTI_10);
 
-		// read ADC data
 		lh001_91_read_data_nofifo(&ecg_dat);
 		data_ready_flag = 1;
 	}
