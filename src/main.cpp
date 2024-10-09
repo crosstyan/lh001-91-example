@@ -97,14 +97,6 @@ int main() {
 	// PA2 (TX) & PA3 (RX)
 	// PA14 (TX) & PA15 (RX)
 	uart_print_init();
-
-	volatile auto counter = 0;
-	while (true) {
-		fputc('c', nullptr);
-		delay_ms(10);
-		counter += 1;
-	}
-
 	debug_pin_init();
 
 	printf("test start\r\n");
@@ -119,19 +111,16 @@ int main() {
 	lh001_91_adc_go();
 	lh001_91_rdatac_start();
 	while (true) {
-		fputc('c', nullptr);
-		delay_ms(10);
-		counter += 1;
-		// if (data_ready_flag != 0) {
-		// 	data_ready_flag = 0;
-		// 	data_cnt++;
-		//
-		// 	uint8_t val;
-		// 	const float volt_mv = lh001_91_adc_code2mv(ecg_dat.data, 2500);
-		// 	printf("%d,%x,%f\r\n", data_cnt, ecg_dat.loffstat, volt_mv);
-		// 	lh001_91_read_regs(ADDR_LH001_91_LOFFSTAT, &val, 1);
-		// 	printf("%x\r\n", val);
-		// }
+		if (data_ready_flag != 0) {
+			data_ready_flag = 0;
+			data_cnt++;
+
+			uint8_t val;
+			const float volt_mv = lh001_91_adc_code2mv(ecg_dat.data, 2500);
+			printf("%d,0x%02x,%.4f\r\n", data_cnt, static_cast<uint8_t>(ecg_dat.loffstat), volt_mv);
+			lh001_91_read_regs(ADDR_LH001_91_LOFFSTAT, &val, 1);
+			printf("%x\r\n", val);
+		}
 	}
 }
 

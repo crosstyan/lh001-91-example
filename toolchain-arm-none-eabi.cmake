@@ -93,8 +93,16 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 # https://stackoverflow.com/questions/39236917/using-gccs-link-time-optimization-with-static-linked-libraries
 #
 # cmake-format: on
-set(OBJECT_GEN_FLAGS
-    "-mthumb \
+
+# Floating Point Unit (FPU)
+option(USE_HARD_FLOAT "Use hardware floating point" ON)
+if (USE_HARD_FLOAT)
+    set(HARD_FLOAT "-mfloat-abi=hard -mfpu=fpv4-sp-d16")
+else ()
+    set(HARD_FLOAT "-mfloat-abi=soft")
+endif ()
+
+set(OBJECT_GEN_FLAGS "-mthumb \
     -fno-builtin \
     -Wall \
     -Wimplicit-fallthrough\
@@ -103,7 +111,8 @@ set(OBJECT_GEN_FLAGS
     -fomit-frame-pointer \
     -mabi=aapcs\
     -mtune=${CPU_TYPE} \
-    -mcpu=${CPU_TYPE}")
+    -mcpu=${CPU_TYPE} \
+    ${HARD_FLOAT}")
 
 set(CMAKE_C_FLAGS
         "${OBJECT_GEN_FLAGS}"
@@ -131,15 +140,17 @@ set(CMAKE_ASM_FLAGS
 # -Wl,-Map=\"${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_PROJECT_NAME}.map\"
 #
 # cmake-format: on
-set(CMAKE_EXE_LINKER_FLAGS
-        "-Wl,--gc-sections \
+#
+# https://stackoverflow.com/questions/12703307/arm-none-eabi-gcc-printing-float-number-using-printf
+# for using printf with float numbers `-u _printf_float` is needed
+set(CMAKE_EXE_LINKER_FLAGS "-Wl,--gc-sections \
     --specs=nosys.specs \
     --specs=nano.specs \
     -mabi=aapcs \
     -mcpu=${CPU_TYPE} \
     -mthumb \
-    -n"
-        CACHE INTERNAL "Linker options")
+    -u _printf_float \
+    -n" CACHE INTERNAL "Linker options")
 
 # cmake-format: off
 # ---------------------------------------------------------------------------------------

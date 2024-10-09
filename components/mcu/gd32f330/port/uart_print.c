@@ -55,21 +55,33 @@ void uart_print_init() {
 	usart_word_length_set(USART1, USART_WL_8BIT);
 	usart_stop_bit_set(USART1, USART_STB_1BIT);
 	usart_parity_config(USART1, USART_PM_NONE);
-	usart_baudrate_set(USART1, UART_BAUDRATE);
+	usart_baudrate_set(USART1, 115200U);
 	usart_receive_config(USART1, USART_RECEIVE_ENABLE);
 	usart_transmit_config(USART1, USART_TRANSMIT_ENABLE);
 
 	usart_enable(USART1);
 }
 
-#ifdef __ICCARM__
+/*# Retarget printf to UART (std library and toolchain dependent) #########*/
+// https://stackoverflow.com/questions/51515052/redefining-fputc-function-when-using-arm-none-eabi-toolchain
+
+#if defined(__GNUC__)
+int _write(int fd, char *ptr, int len) {
+	for (int i = 0; i < len; i++) {
+		usart_data_transmit(USART1, ptr[i]);
+		while (RESET == usart_flag_get(USART1, USART_FLAG_TBE))
+			;
+	}
+	return len;
+}
+#elif defined(__ICCARM__)
 int putc(char c) {
 	usart_data_transmit(USART1, c);
 	while (RESET == usart_flag_get(USART1, USART_FLAG_TBE))
 		;
 	return c;
 }
-#else
+#elif defined(__CC_ARM)
 int fputc(int ch, FILE *f) {
 	usart_data_transmit(USART1, ch);
 	while (RESET == usart_flag_get(USART1, USART_FLAG_TBE))

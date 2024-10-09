@@ -43,3 +43,5 @@ See the [og](https://github.com/HQU-gxy/lh001-91-example/tree/og) branch for the
 - [CommunityGD32Cores/gd32-pio-spl-package](https://github.com/CommunityGD32Cores/gd32-pio-spl-package)
 - [CommunityGD32Cores/gd32-pio-projects](https://github.com/CommunityGD32Cores/gd32-pio-projects)
 - [CommunityGD32Cores/platform-gd32](https://github.com/CommunityGD32Cores/platform-gd32)
+- [charlesnicholson/nanoprintf](https://github.com/charlesnicholson/nanoprintf)
+- [MaJerle/lwprintf](https://github.com/MaJerle/lwprintf)

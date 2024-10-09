@@ -21,10 +21,6 @@ extern "C" {
 #define DEBUG_PIN      GPIO_PIN_1
 #define DEBUG_PIN_RCC  RCU_GPIOA
 
-// #define  UART_BAUDRATE            115200
-#define UART_BAUDRATE 1500000
-
-
 void debug_pin_init(void);
 void debug_pin_set(void);
 void debug_pin_clr(void);
