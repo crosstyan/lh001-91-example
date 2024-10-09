@@ -133,6 +133,7 @@ inline void systick_init() {
 	//
 	// about 1050ms in real time
 	// I'm not sure why
+	systick_clksource_set(SYSTICK_CLKSOURCE_HCLK_DIV8);
 	SysTick_Config(SystemCoreClock / (1'000U * 10U));
 	NVIC_SetPriority(SysTick_IRQn, 0x00U);
 }
