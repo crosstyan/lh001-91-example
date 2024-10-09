@@ -1,5 +1,4 @@
--DTOOLCHAIN_PREFIX=/opt/arm-gnu-toolchain-13.2# [LH001-91](http://en.legendsemi.com/product_2/1043097573976657920.html)
-evaluation example
+# [LH001-91](http://en.legendsemi.com/product_2/1043097573976657920.html) evaluation example
 
 [LH001-91](http://en.legendsemi.com/product_2/1043097573976657920.html) is a
 high-precision and low-cost analog front end: it supports EEG, ECG measurement
